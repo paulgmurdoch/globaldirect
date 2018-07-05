@@ -1,0 +1,286 @@
+body {
+  padding-top: 50px;
+  font-family: 'FrutigerLTStd45Light';
+}
+.starter-template {
+  padding: 160px 0 15px 0;
+}
+
+.title{
+color: #fff;
+font-size: 68px;
+font-family: 'theunltdregular',helvetica,sans-serif;
+letter-spacing: 4px;
+float: left;
+}
+
+.top-tab{
+  background: url(../images/top-tab.png);
+  background-image: url(../images/top-tab.svg), none; 
+  background-repeat: no-repeat;
+  min-height: 44px;
+  min-width: 275px;
+  text-align: center;
+  font-size: 22.42px;
+  padding: 6px 0px;
+}
+
+.home-left{
+  background: url(../images/left-grey-corner.png);
+  min-width: 21px;
+  min-height: 27px;
+}
+
+.home-right{
+  background: url(../images/right-grey-corner.png);
+  min-width: 21px;
+  min-height: 27px;
+}
+
+.black-corner{
+  background: url(../images/universal-black-corner.png);
+  min-width: 21px;
+  min-height: 27px;
+}
+
+.black-right-corner{
+  background: url(../images/black-right-corner.png);
+  min-width: 21px;
+  min-height: 27px;
+}
+
+.nav {
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.nav > li > a {
+  position: relative;
+  display: block;
+  padding: 4px 4px 3px 0;
+}
+
+.navbar-inverse{
+	color: fff;
+	margin-top: 28px; 
+	background: #ed1c24; 
+	min-height: 133.364px;
+  border-color: #d1d2d4;
+  border-bottom-width: 10px;
+
+}
+
+.navbar-inverse .navbar-nav > li > a {
+	color: #fff;
+	background-color: #000;
+}
+
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus{
+	background: #d1d2d4;
+	color: #000;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
+color: #ffffff;
+background-color: #000 !important;
+}
+
+.countdown{
+	background: url(../images/countdown.png);
+  	/*background-image: url(../images/countdown.svg), none; 
+  	background-repeat: no-repeat;*/
+  	min-height: 466px;
+  	min-width: 578px;
+}
+
+.slogan{
+  background: #d1d2d4;
+  min-height: 120.52px;
+  min-width: 582.742px;
+  font-family: 'FrutigerLTStd65Bold';
+  font-size: 21px;
+  padding: 30px 0px;
+  text-align: center;
+  -webkit-border-radius: 10px;
+          border-radius: 10px;
+}
+
+.mini-slogan{
+  font-family: 'FrutigerLTStd65Bold';
+  font-size: 21px;
+}
+
+.mini-slogan span{
+  font-family: 'FrutigerLTStd45Light';
+}
+
+.grey{
+  background: #d1d2d4;
+  min-height: 10px; 
+}
+
+.tabrow {
+    position: relative;
+    font-family: 'FrutigerLTStd65Bold';
+}
+
+.tabrow:after {
+    position: absolute;
+    content: "";
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    border-bottom: 1px solid #AAA;
+    z-index: 1;
+}
+
+.tabrow:before {
+    z-index: 1;
+}
+
+.tabrow li:before,
+.tabrow li:after {
+    /*position: absolute;
+    bottom: -1px;
+    width: 6px;
+    height: 6px;
+    content: " ";*/
+}
+
+.tabrow li:before {
+    left: -6px;
+    border-bottom-right-radius: 6px;
+    border-width: 0 1px 1px 0;
+    box-shadow: 2px 2px 0 #ECECEC;
+}
+.tabrow li:after {
+    right: -6px;
+    border-bottom-left-radius: 6px;
+    border-width: 0 0 1px 1px;
+    box-shadow: -2px 2px 0 #ECECEC;
+}
+.tabrow li:after, .tabrow li:before {
+    border: 1px solid #AAA;
+}
+
+.tabrow li {
+    border: 1px solid #aaa;
+    background: #ECECEC;
+    display: inline-block;
+    position: relative;
+    z-index: 0;
+    padding: 0 10px;
+    margin: 0 10px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    background:      -o-linear-gradient(top, #ECECEC 50%, #D1D1D1 100%);
+    background:     -ms-linear-gradient(top, #ECECEC 50%, #D1D1D1 100%);
+    background:    -moz-linear-gradient(top, #ECECEC 50%, #D1D1D1 100%);
+    background: -webkit-linear-gradient(top, #ECECEC 50%, #D1D1D1 100%);
+    background: linear-gradient(top, #ECECEC 50%, #D1D1D1 100%);
+    /*box-shadow: 0 3px 3px rgba(0, 0, 0, 0.4), inset 0 1px 0 #FFF;*/
+    /*text-shadow: 0 1px #FFF;*/
+    margin: 0 0px;
+    padding: 0  0px;
+}
+
+.tabrow li.selected {
+    background: #FFF;
+    color: #000;
+    z-index: 2;
+    border-bottom-color: #FFF;
+}
+
+.tabrow li.selected:before {
+    box-shadow: 2px 2px 0 #FFF;
+}
+.tabrow li.selected:after {
+    box-shadow: -2px 2px 0 #FFF;
+}
+
+/*FLIPCLOCK */
+
+.clock{
+  background: #666666; /* Old browsers */
+background: -moz-linear-gradient(top,  #666666 21%, #2b2b2b 76%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(21%,#666666), color-stop(76%,#2b2b2b)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #666666 21%,#2b2b2b 76%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #666666 21%,#2b2b2b 76%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #666666 21%,#2b2b2b 76%); /* IE10+ */
+background: linear-gradient(to bottom,  #666666 21%,#2b2b2b 76%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#666666', endColorstr='#2b2b2b',GradientType=0 ); /* IE6-9 */
+
+  
+
+  -webkit-border-radius: 15px;
+          border-radius: 15px;
+
+ 
+  background-clip: padding-box;
+
+  min-height: 120px;
+  max-width: 545px;
+}
+.flip-clock-divider .flip-clock-label {
+position: absolute !important;
+top: 6em !important;
+right: -90px !important;
+color: #fff !important;
+text-shadow: none !important;
+text-transform: uppercase;
+font-size: 16px;
+}
+
+.flip-clock-dot {
+display: block;
+background: #fff !important;
+width: 10px;
+height: 10px;
+position: absolute;
+border-radius: 0% !important;
+box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+left: 5px; }
+
+.flip-clock-wrapper {
+text-align: center;
+position: relative;
+width: 100%;
+margin: 1em;}
+
+
+@font-face {
+    font-family: 'theunltdregular';
+    src: url('../fonts/theunltd-webfont.eot');
+    src: url('../fonts/theunltd-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/theunltd-webfont.woff') format('woff'),
+         url('../fonts/theunltd-webfont.ttf') format('truetype'),
+         url('../fonts/theunltd-webfont.svg#theunltdregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'FrutigerLTStd45Light';
+    src: url('../fonts/frutigerltstd-light.eot');
+    src: url('../fonts/frutigerltstd-light.eot') format('embedded-opentype'),
+         url('../fonts/frutigerltstd-light.woff') format('woff'),
+         url('../fonts/frutigerltstd-light.ttf') format('truetype'),
+         url('../fonts/frutigerltstd-light.svg#FrutigerLTStd45Light') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'FrutigerLTStd65Bold';
+    src: url('../fonts/frutigerltstd-bold.eot');
+    src: url('../fonts/frutigerltstd-bold.eot') format('embedded-opentype'),
+         url('../fonts/frutigerltstd-bold.woff') format('woff'),
+         url('../fonts/frutigerltstd-bold.ttf') format('truetype'),
+         url('../fonts/frutigerltstd-bold.svg#FrutigerLTStd65Bold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}

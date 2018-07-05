@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="ico/favicon.ico">
+
+    <title>The Leaders Ladder</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/starter-template.css" rel="stylesheet">
+    <link href="css/flipclock.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+    <!--<div class="container">
+      <div class="col-md-12" style="min-height: 133.364px; background: #ed1c24;"> 
+      </div>
+    </div>--><!-- /.container -->
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <h1 class="title">The Leaders Ladder</h1>
+        <div class="pull-right top-tab">DEC - WEEK 1</div>
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="home-left"></li>
+            <li class="active"><a href="#">Home</a></li>
+            <li class="home-right"></li>
+            <li><a href="#">Promotions</a></li>
+            <li class="black-corner"></li>
+            <li><a href="#">Franchise Production</a></li>
+            <li class="black-corner"></li>
+            <li><a href="#">Assistant Owner Production</a></li>
+            <li class="black-corner"></li>
+            <li><a href="#">Team Leader Production</a></li>
+            <li class="black-corner"></li>
+            <li><a href="#">Personal Production</a></li>
+            <li class="black-corner"></li>
+            <li><a href="#">Top 10 High Rollers</a></li>
+            <li class="black-corner"></li>
+            <li><a href="#">Notices</a></li>
+            <li class="black-right-corner"></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+    <div class="grey"></div>
+    <div class="container">
+
+      <div class="starter-template">
+        <div class="col-md-6">
+          <img src="images/the-unlimited-logo.svg" alt="the unlimited logo" onerror="this.onerror=null; this.src='images/the-unlimited-logo.png'">
+          <img src="images/whos-hot-this-week.png">
+          <p class="mini-slogan"><span>The World's</span> <strong>Greatest Opportunity</strong></p>
+        </div>
+        <div class="col-md-6">
+          <div class="countdown" style="padding-top: 285px;">
+                <div class="clock"></div>
+          </div>
+          <div class="slogan">
+            How close are you to reaching your dream? Have a look at this week’s Top Achievers to see if you made the list!
+          </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /.container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/flipclock/libs/base.js"></script>
+    <script src="js/flipclock/flipclock.js"></script>
+    <script src="js/flipclock/faces/dailycounter.js"></script>
+    <script src="js/flipclock/lang/en-us.js"></script>
+    <script type="text/javascript">
+      var clock;
+
+      $(document).ready(function() {
+
+        // Grab the current date
+        var currentDate = new Date();
+
+        // Set some date in the future. In this case, it's always Jan 1
+        var futureDate  = new Date(currentDate.getFullYear() + 1, 0, -6);
+
+        // Calculate the difference in seconds between the future and current date
+        var diff = futureDate.getTime() / 1000 - currentDate.getTime() / 1000;
+
+        // Instantiate a coutdown FlipClock
+        clock = $('.clock').FlipClock(diff, {
+          clockFace: 'DailyCounter',
+          countdown: true,
+          language: 'en'
+        });
+      });
+    </script>
+      <script>
+       $("li").click(function(e) {
+        e.preventDefault();
+        $("li").removeClass("selected");
+        $(this).addClass("selected");
+      });
+      </script>
+  </body>
+</html>

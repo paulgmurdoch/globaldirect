@@ -1,0 +1,283 @@
+<?php
+/**
+ * Plugin Name: File Uploader
+ * http://www.origindev.co.za/bulletin
+ * Description: This plugin allows uploads of XML documents to a wordpress page.
+ * Version: 1.1
+ * Author: Dean Thomson
+ * Author URI: http://www.origindev.co.za
+ */
+ 
+ /* ================================
+  * Create Admin Section
+  * ================================
+  */ 
+
+
+function uploader_admin(){
+  	
+	add_options_page('Uploader Plugin Options', 'Uploader Plugin', 'manage_options', 'uploader-menu', 'uploader_options');
+	
+}
+  
+add_action('admin_menu','uploader_menu');
+  
+function uploader_options(){
+  	
+	include('uploader_admin.php');
+	
+}
+   
+function uploader_menu(){
+	
+	add_options_page('Uploader Plugin Options', 'Uploader Plugin', 'manage_options', 'uploader-menu', 'uploader_options');
+	
+}
+   
+/* ================================
+  * Initialise Plugin
+  * ================================
+  */
+ 
+add_action('init','uploader_init');
+ 
+// initialise uploader plugin
+function uploader_init(){
+  	
+	tableSet();
+}
+ 
+// create table in database
+function tableSet(){
+ 
+	global $wpdb;
+ 	
+	$promo = $wpdb->prefix . "list_promo";
+ 	
+	$sql = "
+	   CREATE TABLE $promo (
+	   id mediumint(9) NOT NULL AUTO_INCREMENT,
+	   column1 text NOT NULL,
+	   column2 text NOT NULL,
+	   column3 VARCHAR(55) DEFAULT '' NOT NULL,
+	   UNIQUE KEY id (id)
+	);"; 		
+	
+	require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+	dbDelta( $sql );
+ 	
+}
+
+/* ================================
+  * File Handler
+  * ================================
+  */
+
+global $data, $col1, $col2, $col3;
+	
+$data = array();	
+	
+function add_row($col1, $col2, $col3){		
+
+	// Create data array variables
+	$data[] = array(
+				
+		'column_1' => $col1,
+		'column_2' => $col2,			
+		'column_3' => $col3			
+	
+	);
+
+}
+
+/**
+ * Allow XML files to be uploaded
+ */
+add_filter('upload_mimes', 'custom_upload_xml');
+ 
+function custom_upload_xml($mimes) {
+    $mimes = array_merge($mimes, array('xml' => 'application/xml'));
+    return $mimes;
+}
+
+function upload_file(){
+	
+	global $wpdb;
+
+	/**
+	 * upload file to uploads folder. 
+	 * check if file exists and handle appropriately 
+	 */	 
+
+	 wp_upload_bits($_FILES["file"]["tmp_name"], null, file_get_contents($_FILES["file"]["tmp_name"]));
+	 
+	 if ( ! function_exists( 'wp_handle_upload' ) ) require_once( ABSPATH . 'wp-admin/includes/file.php' );
+		
+		$uploadedfile 		= $_FILES['file'];
+		$upload_overrides 	= array( 'test_form' => false );
+		$movefile 			= wp_handle_upload( $uploadedfile, $upload_overrides );
+		
+		if ( $movefile ) {
+		    echo "File is valid, and was successfully uploaded.\n";
+		    //var_dump( $movefile);
+		} else {
+		    echo "Possible file upload attack!\n";
+	}
+
+	// checks if file exists and translate into code
+	function selectfile($dirname){
+			
+		$arrayfiles = array();
+		
+		if(file_exists($dirname)){
+			$handle = opendir($dirname);
+			while (false !== ($file = readdir($handle))) {
+				if(is_file($dirname.$file)){
+					array_push($arrayfiles,$file);
+				}
+			}
+			
+			$handle = closedir($handle);
+		
+		}
+		sort($arrayfiles);
+		return $arrayfiles[count($arrayfiles)-1];
+	}	
+	
+	// path to uploaded XML file 
+	$path 	= ABSPATH . "wp-content/uploads/2013/12/";
+	$xml 	= simplexml_load_file($path.selectfile($path));
+	
+	// print "<br><br>\$path = " . $path . "<br><br> Full path = " . $path.selectfile($path);
+	
+	$sxml = new SimpleXMLElement("/Applications/MAMP/htdocs/bulletin/wp-content/uploads/2013/12/promotions1.xml",NULL,true);
+	
+	print "<br><br>";
+	
+	var_dump((int) $sxml->Table[0]->attributes('ss', TRUE)->ExpandedColumnCount);
+		
+	// error checking
+	ini_set('display_errors', true);
+	error_reporting(E_ALL);			
+
+	/**
+	 * Send information to database table
+	 */
+	if(isset($xml)){				 
+		
+		// $dom = new DOMDocument;
+		// $dom->load($xml);
+		
+		// $rows = $dom->getElementsByTagName('Row');
+				
+		// Get Info from XML and add to HTML table						
+		// foreach($rows as $row){				
+// 								
+			// $col1 	= '';
+			// $col2 	= '';
+			// $col3 	= '';
+// 			
+			// $index = 1;
+			// $cells = $row->getElementsByTagName('Cell');
+// 			
+			// foreach($cells as $cell){
+				// $ind = $cell->getAttribute('Index');
+// 
+				// if($ind != null) $index = $ind;
+// 				
+				// if($index == 1) $col1 	= $cell->nodeValue ;
+				// if($index == 2) $col2 	= $cell->nodeValue ;
+				// if($index == 3) $col3  	= $cell->nodeValue ;
+// 
+				// $index += 1;
+// 
+			// }
+// 			
+			// add_row($col1, $col2, $col3);
+// 
+			// $wpdb->insert('wp_list_promo', array(				 
+				 // 'column1' => $col1,
+				 // 'column2' => $col2,
+				 // 'column3' => $col3			
+				// )
+			// );
+// 
+		// }						
+			
+	}		
+		
+}  						
+
+/* ===================================================
+ * 	Table Creater Shortcode
+ * 	- gets info from database and generates HTML
+ * ===================================================
+ */
+
+// create tables
+function create_tables($content = null){
+	
+	global $wpdb;
+	
+	// get data from db
+	$myrows = $wpdb->get_results( 
+										"
+										SELECT *
+										FROM wp_list_promo
+										"
+	);
+	
+	// start table	
+	echo "
+			
+		<table class='table table-hover table-striped'>
+		
+		";
+	
+	// get rows from database			
+	foreach($myrows as $row){
+	
+		// if column 1 begins with 'name' make table header
+		// otherwise create normal table rows
+		if($row->column1 == 'NAME' || $row->column1 == 'Name'){
+			
+			$html = "
+
+				<tr>
+					<th>".$row->column1."</th>
+					<th>".$row->column2."</th>
+					<th>".$row->column3."</th>
+				</tr>
+
+			";
+
+			echo $html; 
+
+		} else {
+
+			$html = "
+								
+				<tr>
+					<td>".$row->column1."</td>
+					<td>".$row->column2."</td>
+					<td>".$row->column3."</td>
+				</tr>
+			
+			";
+
+			echo $html;
+
+		}// end if
+		
+	}// end foreach
+	
+	// end table
+	echo "
+		</tbody>	
+		 ";	
+
+}
+
+add_shortcode('table','create_tables');
+
+?>
